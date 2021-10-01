@@ -9,8 +9,8 @@ public class Main {
         int[] arr = createRandomArray(50, 100);
         displayArrayContents(arr);
 
-        System.out.println("Running mergeSort on array\n");
-        MergeSort.sort(arr);
+        System.out.println("Running quickSort on array\n");
+        QuickSort.sort(arr);
 
         displayArrayContents(arr);
 
