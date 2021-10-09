@@ -30,7 +30,7 @@ public class QuickSort {
         sort(arr, 0, arr.length - 1);
     }
 
-    public static void sort(int[] arr, int firstIndex, int lastIndex) {
+    private static void sort(int[] arr, int firstIndex, int lastIndex) {
         if(firstIndex < lastIndex) {
             int pivotPoint = partition(arr, arr[firstIndex], firstIndex, lastIndex);
             swap(arr, firstIndex, pivotPoint);
