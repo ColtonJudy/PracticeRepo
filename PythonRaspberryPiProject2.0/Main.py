@@ -4,7 +4,7 @@ from pprint import pprint
 from Location import getLocation
 
 settings = {
-    'api_key' : '040e13ce7de9dadb243f29cde3be44f1',
+    'api_key' : '${{secret.OpenWeather_API_KEY}}',
     'zip_code' : getLocation(),
     'country_code' : 'us',
     'temp_unit' : 'imperial'
