@@ -1,3 +1,4 @@
+
 def getLocation():
-    zipCode = 37048
-    return zipCode
+    #TODO: return zip code relative to the location of the GPS Dongle
+    return 37048

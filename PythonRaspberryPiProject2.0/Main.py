@@ -2,13 +2,20 @@ import time
 import requests
 from pprint import pprint
 from Location import getLocation
+from tkinter import *
 
 settings = {
-    'api_key' : '${{secret.OpenWeather_API_KEY}}',
+    'api_key' : '040e13ce7de9dadb243f29cde3be44f1',
     'zip_code' : getLocation(),
     'country_code' : 'us',
     'temp_unit' : 'imperial'
 }
+
+win = Tk()
+b1 = Button(win, text="test")
+b1.pack()
+
+win.mainloop()
 
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather?appid={0}&zip={1},{2}&units={3}"
 
