@@ -1,26 +1,27 @@
-import time
-import requests
-from pprint import pprint
-from Location import getLocation
-from tkinter import *
+from tkinter.constants import TOP
+from Weather import Weather
+import tkinter as tk
+import tkinter.ttk as ttk
 
-settings = {
-    'api_key' : '040e13ce7de9dadb243f29cde3be44f1',
-    'zip_code' : getLocation(),
-    'country_code' : 'us',
-    'temp_unit' : 'imperial'
-}
+weather = Weather(36.533221, -87.349698)
 
-win = Tk()
-b1 = Button(win, text="test")
-b1.pack()
+root = tk.Tk()
+root.geometry('800x600')
+root.title('Colton\'s Weather Program')
 
-win.mainloop()
+location_label = tk.Label(root, text = "Location: " + weather.info['location'])
+location_label.pack(side=TOP)
 
-BASE_URL = "http://api.openweathermap.org/data/2.5/weather?appid={0}&zip={1},{2}&units={3}"
+lat_label = tk.Label(root, text = "LAT: " + str(weather.settings['lat']))
+lat_label.pack(side=TOP)
 
-while True:
-    final_url = BASE_URL.format(settings["api_key"],settings["zip_code"],settings["country_code"],settings["temp_unit"])
-    weather_data = requests.get(final_url).json()
-    pprint(weather_data)
-    time.sleep(20) #get new data every 20 seconds
+long_label = tk.Label(root, text = "LON: " + str(weather.settings['lon']))
+long_label.pack(side=TOP)
+
+temp_label = tk.Label(root, text = "Current Temperature: " + str(round(weather.current['temp'], 2)))
+temp_label.pack(side=TOP)
+
+my_button = tk.Button(root, text="Update",command=weather.displayCurrent)
+my_button.pack(side=TOP)
+
+root.mainloop()
