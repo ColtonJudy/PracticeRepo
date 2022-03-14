@@ -2,9 +2,10 @@ from tkinter.constants import BOTTOM, TOP
 from Weather import Weather
 import tkinter as tk
 import tkinter.ttk as ttk
+from datetime import datetime
 
-lat = 35.155826
-lon = -90.051063
+lat = 36.532806
+lon = -87.352852
 
 root = tk.Tk()
 root.geometry('800x600')
@@ -26,6 +27,9 @@ temp_label.pack(side=TOP)
 weather_conditons_label = tk.Label(root)
 weather_conditons_label.pack(side=TOP)
 
+update_label = tk.Label(root)
+update_label.pack(side=BOTTOM)
+
 #method that loads the weather data to the labels
 def loadWeatherData(lat, lon):
     #update weather variable
@@ -34,13 +38,16 @@ def loadWeatherData(lat, lon):
     location_label['text'] = "Location: " + str(weather.info['location'])
     lat_label['text'] = "LAT: " + str(weather.settings['lat'])
     lon_label['text'] = "LON: " + str(weather.settings['lon'])
-    temp_label['text'] = "Current Temperature: " + str(round(weather.current['temp'], 2))
+    temp_label['text'] = "Current Temperature: " + str(round(weather.current['temp'], 2)) + "°F"
     weather_conditons_label['text'] = "Current Weather: " + weather.current['weather_conditions']
+    update_label['text'] = "Last updated: " + datetime.now().strftime("%H:%M")
 
 loadWeatherData(lat, lon)
 
 #Update Button
 #TODO: API HAS A LIMITED NUMBER OF CALLS PER DAY, SO A LIMIT SHOULD BE ADDED OR THE PROGRAM SHOULD BE MADE TO ONLY AUTOMATICALLY UPDATE ~ EVERY MINUTE
+
+
 update_button = tk.Button(root, text="Update",command=lambda: loadWeatherData(lat, lon))
 update_button.pack(side=BOTTOM)
 
