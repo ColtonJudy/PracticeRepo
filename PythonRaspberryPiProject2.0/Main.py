@@ -3,9 +3,9 @@ from Weather import Weather
 import tkinter as tk
 import tkinter.ttk as ttk
 from datetime import datetime
+from Location import *
 
-lat = 36.532806
-lon = -87.352852
+lat, lon = getLocation()
 
 root = tk.Tk()
 root.geometry('800x600')
@@ -46,8 +46,6 @@ loadWeatherData(lat, lon)
 
 #Update Button
 #TODO: API HAS A LIMITED NUMBER OF CALLS PER DAY, SO A LIMIT SHOULD BE ADDED OR THE PROGRAM SHOULD BE MADE TO ONLY AUTOMATICALLY UPDATE ~ EVERY MINUTE
-
-
 update_button = tk.Button(root, text="Update",command=lambda: loadWeatherData(lat, lon))
 update_button.pack(side=BOTTOM)
 
