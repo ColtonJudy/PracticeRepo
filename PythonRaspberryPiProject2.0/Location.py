@@ -3,6 +3,8 @@ import gpsd
 from time import sleep
 import os
 
+defaultCoordinates = (36.53517052947032, -87.3548109121921)
+
 #Find the nearest city to the given coordinates using Nominatim API
 def find_nearest_city(lat, lon):
     geolocator = Nominatim(user_agent="Colton's Weather Raspberry Pi Project")
@@ -21,7 +23,12 @@ def getLocation():
     gpsd.connect()
 
     while True:
-        packet = gpsd.get_current()
+        try:
+            packet = gpsd.get_current()
+        except:
+            print("GPS Device not detected, using default coordinates")
+            return defaultCoordinates
+
         try:
             print(packet.position())
             return packet.position()
