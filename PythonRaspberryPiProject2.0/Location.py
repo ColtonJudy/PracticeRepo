@@ -3,14 +3,14 @@ import gpsd
 from time import sleep
 import os
 
-defaultCoordinates = (36.53517052947032, -87.3548109121921)
+defaultCoordinates = (36.535170, -87.35481)
 
 #Find the nearest city to the given coordinates using Nominatim API
 def find_nearest_city(lat, lon):
     geolocator = Nominatim(user_agent="Colton's Weather Raspberry Pi Project")
 
     coords = (lat, lon)
-    location = geolocator.reverse(coords)
+    location = geolocator.reverse(coords, zoom=14)
 
     return location
 
