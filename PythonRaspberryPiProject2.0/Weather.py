@@ -13,7 +13,7 @@ class Weather:
     }
 
     info = {
-        'location' : 'NULL'
+        'location' : []
     }
 
     current = {

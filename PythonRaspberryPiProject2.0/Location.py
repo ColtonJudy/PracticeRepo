@@ -2,6 +2,7 @@ from geopy.geocoders import Nominatim
 import gpsd
 from time import sleep
 import os
+import string
 
 defaultCoordinates = (36.535170, -87.35481)
 
@@ -10,7 +11,8 @@ def find_nearest_city(lat, lon):
     geolocator = Nominatim(user_agent="Colton's Weather Raspberry Pi Project")
 
     coords = (lat, lon)
-    location = geolocator.reverse(coords, zoom=14)
+    locationRaw = geolocator.reverse(coords, zoom=10)
+    location = str(locationRaw).split(", ")
 
     return location
 
@@ -20,7 +22,10 @@ def getLocation():
     #LAUNCH GPSD
     os.system("gpsd -D 5 -N -n /dev/cu.usbmodem1101")
 
-    gpsd.connect()
+    try:
+        gpsd.connect()
+    except:
+        print("GPSD failed to connect")
 
     while True:
         try:
