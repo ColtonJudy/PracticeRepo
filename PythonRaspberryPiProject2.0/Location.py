@@ -39,8 +39,4 @@ def getLocation():
             return packet.position()
         except:
             print("Position could not be determined, press [Y] to use default coordinates")
-            val = input()
-            if val == 'y' or  val == 'Y':
-                return defaultCoordinates
-
-        sleep(5)
+            return defaultCoordinates
